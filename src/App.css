@@ -117,6 +117,89 @@ body {
   opacity: 0.7;
 }
 
+/* ---------- Grid overview -> zoom transition ---------- */
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: var(--ink);
+  overflow: hidden;
+}
+
+.grid-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 90% 70% at 50% 50%, transparent 55%, rgba(10,8,6,0.65) 100%);
+}
+
+.grid-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background-size: cover;
+  background-position: center;
+  transform-origin: center center;
+  transform: translate(var(--tx), var(--ty)) scale(var(--sx), var(--sy));
+  border-radius: 6px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+  opacity: 0;
+  animation: gridThumbIn 500ms ease forwards;
+}
+
+@keyframes gridThumbIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.grid-thumb-highlight {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  animation: gridThumbIn 500ms ease forwards, gridPulse 900ms ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.18); }
+}
+
+.grid-thumb-zoomed {
+  transition: transform 850ms cubic-bezier(0.65, 0, 0.35, 1);
+  transform: translate(0, 0) scale(1, 1);
+  outline: none;
+  border-radius: 0;
+  z-index: 2;
+  animation: none;
+  opacity: 1;
+}
+
+.grid-thumb-fade {
+  transition: opacity 500ms ease;
+  opacity: 0;
+  animation: none;
+}
+
+.grid-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: max(22px, env(safe-area-inset-bottom));
+  text-align: center;
+  z-index: 3;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  margin: 0;
+}
+
+.wrap-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* ---------- Tour view ---------- */
 
 .tour {

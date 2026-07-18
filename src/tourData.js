@@ -1,3 +1,24 @@
+// 2-column x 5-row grid, matching the original PDF layout (1,2 / 3,4 / 5,6 / 7,8 / 9,10)
+const GRID_PAD_X = 6; // vw
+const GRID_GAP_X = 3; // vw
+const GRID_PAD_Y = 4; // vh
+const GRID_GAP_Y = 1.6; // vh
+const CELL_W = (100 - 2 * GRID_PAD_X - GRID_GAP_X) / 2; // vw
+const CELL_H = (100 - 2 * GRID_PAD_Y - GRID_GAP_Y * 4) / 5; // vh
+
+function gridBoxFor(index) {
+  const row = Math.floor(index / 2);
+  const col = index % 2;
+  const centerXvw = GRID_PAD_X + col * (CELL_W + GRID_GAP_X) + CELL_W / 2;
+  const centerYvh = GRID_PAD_Y + row * (CELL_H + GRID_GAP_Y) + CELL_H / 2;
+  return {
+    tx: (centerXvw - 50).toFixed(2), // vw offset from viewport center
+    ty: (centerYvh - 50).toFixed(2), // vh offset from viewport center
+    sx: (CELL_W / 100).toFixed(4),
+    sy: (CELL_H / 100).toFixed(4),
+  };
+}
+
 export const slides = [
   {
     id: 1,
@@ -108,4 +129,4 @@ export const slides = [
     zoomFrom: "left 40%",
     zoomTo: "right 40%",
   },
-];
+].map((s, i) => ({ ...s, gridBox: gridBoxFor(i) }));
