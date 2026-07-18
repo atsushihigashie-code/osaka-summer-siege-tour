@@ -3,8 +3,8 @@ import { slides } from "./tourData";
 import "./App.css";
 
 const TOTAL = slides.length;
-const GRID_HOLD_MS = 900; // how long the full 10-photo grid is shown
-const ZOOM_MS = 850; // how long the zoom-in transition takes
+const GRID_HOLD_MS = 1400; // how long the full 10-photo grid is shown
+const ZOOM_MS = 1800; // how long the zoom-in transition takes
 
 export default function App() {
   const [started, setStarted] = useState(false);
