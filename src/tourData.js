@@ -1,3 +1,6 @@
+const BASE = import.meta.env.BASE_URL; // '/' standalone, '/summer-siege-tour/' when embedded
+const asset = (path) => BASE.replace(/\/$/, '') + path;
+
 // 2-column x 5-row grid, matching the original PDF layout (1,2 / 3,4 / 5,6 / 7,8 / 9,10)
 const GRID_PAD_X = 6; // vw
 const GRID_GAP_X = 3; // vw
@@ -22,8 +25,8 @@ function gridBoxFor(index) {
 export const slides = [
   {
     id: 1,
-    audio: "/audio/大阪城ツアー1.mp3",
-    image: "/slides/slide_01.jpg",
+    audio: asset("/audio/大阪城ツアー1.mp3"),
+    image: asset("/slides/slide_01.jpg"),
     eyebrow: "1615",
     title: "The Summer Siege of Osaka",
     subtitle: "The final clash for the realm and the tactical archetypes that defined it.",
@@ -32,8 +35,8 @@ export const slides = [
   },
   {
     id: 2,
-    audio: "/audio/大阪城ツアー2.mp3",
-    image: "/slides/slide_02.jpg",
+    audio: asset("/audio/大阪城ツアー2.mp3"),
+    image: asset("/slides/slide_02.jpg"),
     eyebrow: "The Board is Set",
     title: "Two Armies, Two Fates",
     subtitle:
@@ -43,8 +46,8 @@ export const slides = [
   },
   {
     id: 3,
-    audio: "/audio/大阪城ツアー3.mp3",
-    image: "/slides/slide_03.jpg",
+    audio: asset("/audio/大阪城ツアー3.mp3"),
+    image: asset("/slides/slide_03.jpg"),
     eyebrow: "Opposing Philosophies",
     title: "Rear Command vs. Front-Line Desperation",
     subtitle:
@@ -54,8 +57,8 @@ export const slides = [
   },
   {
     id: 4,
-    audio: "/audio/大阪城ツアー4.mp3",
-    image: "/slides/slide_04.jpg",
+    audio: asset("/audio/大阪城ツアー4.mp3"),
+    image: asset("/slides/slide_04.jpg"),
     eyebrow: "The Shogun's Bloodline",
     title: "Encirclement by Blood",
     subtitle:
@@ -65,8 +68,8 @@ export const slides = [
   },
   {
     id: 5,
-    audio: "/audio/大阪城ツアー5.mp3",
-    image: "/slides/slide_05.jpg",
+    audio: asset("/audio/大阪城ツアー5.mp3"),
+    image: asset("/slides/slide_05.jpg"),
     eyebrow: "The Generation of 1600",
     title: "Boys Sent Into War",
     subtitle:
@@ -76,8 +79,8 @@ export const slides = [
   },
   {
     id: 6,
-    audio: "/audio/大阪城ツアー6.mp3",
-    image: "/slides/slide_06.jpg",
+    audio: asset("/audio/大阪城ツアー6.mp3"),
+    image: asset("/slides/slide_06.jpg"),
     eyebrow: "The Pillars of Resistance",
     title: "Mori Katsunaga's Last Charge",
     subtitle:
@@ -87,8 +90,8 @@ export const slides = [
   },
   {
     id: 7,
-    audio: "/audio/大阪城ツアー7.mp3",
-    image: "/slides/slide_07.jpg",
+    audio: asset("/audio/大阪城ツアー7.mp3"),
+    image: asset("/slides/slide_07.jpg"),
     eyebrow: "Factions Within the Fortress",
     title: "The Moderate and the Hardliner",
     subtitle:
@@ -98,8 +101,8 @@ export const slides = [
   },
   {
     id: 8,
-    audio: "/audio/大阪城ツアー8.mp3",
-    image: "/slides/slide_08.jpg",
+    audio: asset("/audio/大阪城ツアー8.mp3"),
+    image: asset("/slides/slide_08.jpg"),
     eyebrow: "The Climax",
     title: "The Tennoji Breakthrough",
     subtitle:
@@ -109,8 +112,8 @@ export const slides = [
   },
   {
     id: 9,
-    audio: "/audio/大阪城ツアー9.mp3",
-    image: "/slides/slide_09.jpg",
+    audio: asset("/audio/大阪城ツアー9.mp3"),
+    image: asset("/slides/slide_09.jpg"),
     eyebrow: "Japan's Greatest Warrior",
     title: "Sanada Yukimura",
     subtitle:
@@ -120,8 +123,8 @@ export const slides = [
   },
   {
     id: 10,
-    audio: "/audio/大阪城ツアー10.mp3",
-    image: "/slides/slide_10.jpg",
+    audio: asset("/audio/大阪城ツアー10.mp3"),
+    image: asset("/slides/slide_10.jpg"),
     eyebrow: "260 Years",
     title: "The Dawn of the Edo Period",
     subtitle:
