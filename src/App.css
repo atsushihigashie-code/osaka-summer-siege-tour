@@ -229,12 +229,9 @@ body {
 
 .tour-image-layer.active {
   opacity: 1;
-  animation: kenburns 16s ease-out forwards;
-}
-
-@keyframes kenburns {
-  0% { background-position: var(--zoom-from); transform: scale(1.05); }
-  100% { background-position: var(--zoom-to); transform: scale(1.16); }
+  background-position: var(--zoom-to);
+  transform: scale(1.1);
+  transition: opacity 900ms ease, background-position 900ms ease;
 }
 
 .tour-scrim {
