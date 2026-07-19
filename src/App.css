@@ -12,7 +12,9 @@
 
 html, body, #root {
   height: 100%;
+  width: 100%;
   margin: 0;
+  overflow: hidden;
   background: var(--ink);
 }
 
@@ -428,4 +430,24 @@ body {
   font-size: 1.1rem;
   color: var(--paper-dim);
   margin: 0;
+}
+@media (max-height: 480px) and (orientation: landscape) {
+  .gate {
+    padding: 16px 24px;
+  }
+  .gate-crest { width: 44px; height: 44px; margin-bottom: 10px; }
+  .gate-eyebrow { margin-bottom: 8px; font-size: 10px; }
+  .gate-title { font-size: clamp(1.6rem, 7vw, 2.4rem); margin-bottom: 10px; }
+  .gate-title-sub { font-size: clamp(1rem, 3.2vw, 1.3rem); margin-top: 4px; }
+  .gate-desc { font-size: 13px; line-height: 1.4; margin-bottom: 18px; }
+  .gate-button { padding: 10px 28px; }
+  .gate-hint { margin-top: 12px; }
+
+  .tour-panel {
+    padding: 0 18px max(12px, env(safe-area-inset-bottom));
+  }
+  .tour-title { font-size: clamp(1.1rem, 5vw, 1.5rem); margin-bottom: 6px; }
+  .tour-subtitle { font-size: clamp(0.8rem, 3vw, 0.95rem); line-height: 1.3; margin-bottom: 10px; }
+  .tour-header { padding: max(8px, env(safe-area-inset-top)) 14px 0; }
+  .ctrl-btn { width: 34px; height: 34px; font-size: 13px; }
 }
