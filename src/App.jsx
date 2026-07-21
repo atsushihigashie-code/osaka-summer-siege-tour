@@ -15,6 +15,7 @@ export default function App() {
   const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(false);
   const [audioError, setAudioError] = useState(false);
+  const [showEndScreen, setShowEndScreen] = useState(false);
   const audioRef = useRef(null);
   const touchStartX = useRef(null);
   const timers = useRef([]);
@@ -35,6 +36,7 @@ export default function App() {
     clearTimers();
     setPendingIndex(target);
     setAudioError(false);
+    setShowEndScreen(false);
     setPhase("grid");
     const t1 = setTimeout(() => setPhase("zooming"), GRID_HOLD_MS);
     const t2 = setTimeout(() => {
@@ -76,6 +78,14 @@ export default function App() {
       el.play().catch(() => {});
     }
   }, [index, started, phase]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Safety net: on the final chapter, make sure the end screen appears even if
+  // narration never fires "ended" (autoplay blocked, muted, paused, etc.).
+  useEffect(() => {
+    if (!started || phase !== "detail" || index !== TOTAL - 1) return;
+    const fallback = setTimeout(() => setShowEndScreen(true), 60000);
+    return () => clearTimeout(fallback);
+  }, [started, phase, index]);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -204,8 +214,8 @@ export default function App() {
       <audio
         ref={audioRef}
         src={slide.audio}
-        onError={() => setAudioError(true)}
-        onEnded={() => { if (!isLast) goNext(); }}
+        onError={() => { setAudioError(true); if (isLast) setShowEndScreen(true); }}
+        onEnded={() => { if (!isLast) goNext(); else setShowEndScreen(true); }}
       />
 
       <header className="tour-header">
@@ -260,7 +270,7 @@ export default function App() {
         ›
       </button>
 
-      {isLast && phase === "detail" && (
+      {isLast && phase === "detail" && showEndScreen && (
         <div className="tour-end">
           <p className="tour-end-text">The Summer Siege of Osaka, 1615</p>
           <p className="tour-end-sub">The end of one era, the beginning of another.</p>
